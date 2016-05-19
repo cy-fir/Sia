@@ -45,7 +45,7 @@ var (
 	// keep the data even if the price of siacoin fluctuates, the price of raw
 	// storage fluctuates, or the host realizes that there is unexpected
 	// opportunity cost in being a host.
-	defaultCollateral = types.SiacoinPrecision.Mul64(25e3).Div(modules.BlockBytesPerMonthTerabyte) // 25 KS / TB / Month
+	defaultCollateral = types.SiacoinPrecision.Mul64(25e3).Div(modules.BlockBytesPerMonthTerabyte) // RC; orig 50 SC / GB / Month
 
 	// defaultCollateralBudget defines the maximum number of siacoins that the
 	// host is going to allocate towards collateral. 10 million has been chosen
