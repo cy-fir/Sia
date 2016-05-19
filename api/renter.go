@@ -97,6 +97,10 @@ func (srv *Server) renterAllowanceHandlerPOST(w http.ResponseWriter, req *http.R
 		writeError(w, "Couldn't parse period: "+err.Error(), http.StatusBadRequest)
 		return
 	}
+	if period > 144 {
+		writeError(w, "Period is too long (max 144)", http.StatusBadRequest)
+		return
+	}
 	// var renewWindow types.BlockHeight
 	// _, err = fmt.Sscan(req.FormValue("renewwindow"), &renewWindow)
 	// if err != nil {
