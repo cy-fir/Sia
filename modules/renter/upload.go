@@ -30,7 +30,7 @@ var (
 		if build.Release == "testing" {
 			return 8
 		}
-		return 4 // RC; orig value: 20
+		return 3 // RC; orig value: 20
 	}()
 )
 
