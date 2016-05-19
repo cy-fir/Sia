@@ -51,7 +51,7 @@ var (
 	// host is going to allocate towards collateral. 10 million has been chosen
 	// as a number that is large, but not so large that someone would be
 	// furious for losing access to it for a few weeks.
-	defaultCollateralBudget = types.SiacoinPrecision.Mul64(10e6)
+	defaultCollateralBudget = types.SiacoinPrecision.Mul64(1e6) // RC; orig 10e6
 
 	// defaultContractPrice defines the default price of creating a contract
 	// with the host. The default is set to 30 siacoins, which the file
@@ -94,7 +94,7 @@ var (
 	// defaultStoragePrice defines the starting price for hosts selling
 	// storage. We try to match a number that is both reasonably profitable and
 	// reasonably competitive.
-	defaultStoragePrice = types.SiacoinPrecision.Mul64(10e3).Div(modules.BlockBytesPerMonthTerabyte) // 10k SC / TB / Month
+	defaultStoragePrice = types.SiacoinPrecision.Mul64(10e3).Div(modules.BlockBytesPerMonthTerabyte) // RC; orig 20k SC / TB / Month
 
 	// defaultUploadBandwidthPrice defines the default price of upload
 	// bandwidth. The default is set to 1 siacoin per GB, because the host is
@@ -117,7 +117,7 @@ var (
 			return 36 // 3.6 minutes.
 		}
 		if build.Release == "standard" {
-			return 144 // 1 day.
+			return 36 // RC; orig 144
 		}
 		if build.Release == "testing" {
 			return 5 // 5 seconds.
@@ -150,7 +150,7 @@ var (
 			return 20 // About 2 minutes
 		}
 		if build.Release == "standard" {
-			return 288 // 2 days.
+			return 36 // RC; orig 288.
 		}
 		if build.Release == "testing" {
 			return 4
@@ -165,7 +165,7 @@ var (
 			return 20 // About 2 minutes
 		}
 		if build.Release == "standard" {
-			return 72 // About 12 hours
+			return 12 // RC; origin 72
 		}
 		if build.Release == "testing" {
 			return 3
