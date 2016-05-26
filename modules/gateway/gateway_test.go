@@ -20,6 +20,25 @@ func newTestingGateway(name string, t *testing.T) *Gateway {
 	return g
 }
 
+// TestExportedMethodsErrAfterClose tests that exported methods like Close and
+// Connect error with errClosed after the gateway has been closed.
+func TestExportedMethodsErrAfterClose(t *testing.T) {
+	if testing.Short() {
+		t.SkipNow()
+	}
+
+	g := newTestingGateway("TestCloseErrsSecondTime", t)
+	if err := g.Close(); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.Close(); err != errClosed {
+		t.Fatalf("expected %q, got %q", errClosed, err)
+	}
+	if err := g.Connect("localhost:1234"); err != errClosed {
+		t.Fatalf("expected %q, got %q", errClosed, err)
+	}
+}
+
 // TestAddress tests that Gateway.Address returns the address of its listener.
 // Also tests that the address is not unspecified and is a loopback address.
 // The address must be a loopback address for testing.
